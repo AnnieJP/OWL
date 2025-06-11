@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns="http://example.org/university#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:ObjectProperty rdf:about="http://example.org/university#hasMember">
+    <rdfs:domain rdf:resource="http://example.org/university#Department"/>
+    <rdfs:range rdf:resource="http://example.org/university#Person"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://example.org/university#belongsTo">
+        <rdfs:domain rdf:resource="http://example.org/university#Person"/>
+        <rdfs:range rdf:resource="http://example.org/university#Department"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://example.org/university#isSupervisedBy">
+    <rdfs:domain rdf:resource="http://example.org/university#Student"/>
+    <rdfs:range rdf:resource="http://example.org/university#Professor"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://example.org/university#supervises">
+        <rdfs:domain rdf:resource="http://example.org/university#Professor"/>
+        <rdfs:range rdf:resource="http://example.org/university#Student"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <Student rdf:about="http://example.org/university#Alice">
+    <rdf:type rdf:resource="http://example.org/university#Person"/>
+    <enrolledIn>
+      <Course rdf:about="http://example.org/university#Programming101">
+        <taughtBy rdf:resource="http://example.org/university#Bob"/>
+      </Course>
+    </enrolledIn>
+    <enrolledIn>
+      <Course rdf:about="http://example.org/university#LinearAlgebra">
+        <taughtBy rdf:resource="http://example.org/university#Dave"/>
+      </Course>
+    </enrolledIn>
+    <belongsTo>
+      <Department rdf:about="http://example.org/university#ComputerScience"/>
+    </belongsTo>
+  </Student>
+  <owl:ObjectProperty rdf:about="http://example.org/university#taughtBy">
+    <rdfs:domain rdf:resource="http://example.org/university#Course"/>
+    <rdfs:range rdf:resource="http://example.org/university#Professor"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://example.org/university#teaches">
+        <rdfs:domain rdf:resource="http://example.org/university#Professor"/>
+        <rdfs:range rdf:resource="http://example.org/university#Course"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <Student rdf:about="http://example.org/university#Carol">
+    <rdf:type rdf:resource="http://example.org/university#Person"/>
+    <enrolledIn rdf:resource="http://example.org/university#Programming101"/>
+    <enrolledIn>
+      <Course rdf:about="http://example.org/university#DataStructures"/>
+    </enrolledIn>
+    <belongsTo>
+      <Department rdf:about="http://example.org/university#Mathematics"/>
+    </belongsTo>
+  </Student>
+  <owl:ObjectProperty rdf:about="http://example.org/university#hasStudent">
+    <rdfs:domain rdf:resource="http://example.org/university#Course"/>
+    <rdfs:range rdf:resource="http://example.org/university#Student"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://example.org/university#enrolledIn">
+        <rdfs:domain rdf:resource="http://example.org/university#Student"/>
+        <rdfs:range rdf:resource="http://example.org/university#Course"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <Professor rdf:about="http://example.org/university#Bob">
+    <rdf:type rdf:resource="http://example.org/university#Person"/>
+    <teaches rdf:resource="http://example.org/university#Programming101"/>
+    <teaches rdf:resource="http://example.org/university#DataStructures"/>
+    <supervises>
+      <GraduateStudent rdf:about="http://example.org/university#Eve">
+        <belongsTo rdf:resource="http://example.org/university#ComputerScience"/>
+      </GraduateStudent>
+    </supervises>
+    <belongsTo rdf:resource="http://example.org/university#ComputerScience"/>
+  </Professor>
+  <owl:Class rdf:about="http://example.org/university#Professor">
+    <rdfs:subClassOf rdf:resource="http://example.org/university#Person"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://example.org/university#Course"/>
+  <owl:Class rdf:about="http://example.org/university#GraduateStudent">
+    <rdfs:subClassOf rdf:resource="http://example.org/university#Student"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://example.org/university#Student">
+    <rdfs:subClassOf rdf:resource="http://example.org/university#Person"/>
+  </owl:Class>
+  <Professor rdf:about="http://example.org/university#Dave">
+    <rdf:type rdf:resource="http://example.org/university#Person"/>
+    <teaches rdf:resource="http://example.org/university#LinearAlgebra"/>
+    <belongsTo rdf:resource="http://example.org/university#Mathematics"/>
+  </Professor>
+  <owl:Class rdf:about="http://example.org/university#Department"/>
+  <owl:Class rdf:about="http://example.org/university#Person"/>
+</rdf:RDF>

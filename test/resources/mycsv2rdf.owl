@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:ns1="http://schema.org/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:foaf="http://xmlns.com/foaf/0.1/"
+>
+  <foaf:Person rdf:about="http://example.org/people/Jenny">
+    <ns1:address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leidseplein 2</ns1:address>
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jenny</ns1:name>
+    <foaf:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">12</foaf:age>
+  </foaf:Person>
+  <foaf:Person rdf:about="http://example.org/people/John">
+    <ns1:address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dam 52</ns1:address>
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">John</ns1:name>
+    <foaf:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">32</foaf:age>
+  </foaf:Person>
+  <foaf:Person rdf:about="http://example.org/people/Jake">
+    <ns1:address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12E Street 98</ns1:address>
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jake</ns1:name>
+    <foaf:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">42</foaf:age>
+  </foaf:Person>
+  <rdf:Description rdf:about="http://mylocations.org/addresses/Leidseplein%202">
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leidseplein 2</ns1:name>
+  </rdf:Description>
+  <foaf:Person rdf:about="http://example.org/people/Jill">
+    <ns1:address rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52W Street 5</ns1:address>
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jill</ns1:name>
+    <foaf:age rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">28</foaf:age>
+  </foaf:Person>
+  <rdf:Description rdf:about="http://mylocations.org/addresses/52W%20Street%205">
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">52W Street 5</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://mylocations.org/addresses/Dam%2052">
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dam 52</ns1:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://mylocations.org/addresses/12E%20Street%2098">
+    <ns1:name rdf:datatype="http://www.w3.org/2001/XMLSchema#string">12E Street 98</ns1:name>
+  </rdf:Description>
+</rdf:RDF>

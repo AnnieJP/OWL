@@ -1,0 +1,86 @@
+@prefix : <http://example.org/university#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Classes
+:Person a owl:Class .
+:Student a owl:Class ;
+    rdfs:subClassOf :Person .
+:Professor a owl:Class ;
+    rdfs:subClassOf :Person .
+:Course a owl:Class .
+:Department a owl:Class .
+
+# New class for testing inference
+:GraduateStudent a owl:Class ;
+    rdfs:subClassOf :Student .
+
+# Properties
+:teaches a owl:ObjectProperty ;
+    rdfs:domain :Professor ;
+    rdfs:range :Course .
+:taughtBy a owl:ObjectProperty ;
+    rdfs:domain :Course ;
+    rdfs:range :Professor ;
+    owl:inverseOf :teaches .
+:enrolledIn a owl:ObjectProperty ;
+    rdfs:domain :Student ;
+    rdfs:range :Course .
+:hasStudent a owl:ObjectProperty ;
+    rdfs:domain :Course ;
+    rdfs:range :Student ;
+    owl:inverseOf :enrolledIn .
+:belongsTo a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Department .
+:hasMember a owl:ObjectProperty ;
+    rdfs:domain :Department ;
+    rdfs:range :Person ;
+    owl:inverseOf :belongsTo .
+
+# New property for testing inference
+:supervises a owl:ObjectProperty ;
+    rdfs:domain :Professor ;
+    rdfs:range :Student .
+:isSupervisedBy a owl:ObjectProperty ;
+    rdfs:domain :Student ;
+    rdfs:range :Professor ;
+    owl:inverseOf :supervises .
+
+# Individuals
+:Alice a :Student, :Person .
+:Bob a :Professor, :Person .
+:Carol a :Student, :Person .
+:Dave a :Professor, :Person .
+:Eve a :GraduateStudent .  # Only specify GraduateStudent, Person should be inferred
+
+:ComputerScience a :Department .
+:Mathematics a :Department .
+
+:Programming101 a :Course .
+:DataStructures a :Course .
+:LinearAlgebra a :Course .
+
+# Relationships
+:Alice :enrolledIn :Programming101 .
+:Alice :enrolledIn :LinearAlgebra .
+:Carol :enrolledIn :Programming101 .
+:Carol :enrolledIn :DataStructures .
+
+:Bob :teaches :Programming101 .
+:Bob :teaches :DataStructures .
+:Dave :teaches :LinearAlgebra .
+
+# Only specify one direction of these relationships
+# The inverse should be inferred
+:Bob :supervises :Eve .
+:Programming101 :taughtBy :Bob .
+:LinearAlgebra :taughtBy :Dave .
+
+:Alice :belongsTo :ComputerScience .
+:Bob :belongsTo :ComputerScience .
+:Carol :belongsTo :Mathematics .
+:Dave :belongsTo :Mathematics .
+:Eve :belongsTo :ComputerScience .

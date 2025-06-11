@@ -1,0 +1,34 @@
+@prefix : <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:S001 a :Student ;
+    :advisorName "Dr. Smith"^^xsd:string ;
+    :advisorTitle "Associate Professor"^^xsd:string ;
+    :enrolledIn :CS101 ;
+    :hasAdvisor :P001 ;
+    :hasAge 21 ;
+    :hasName "Jane"^^xsd:string .
+
+:S002 a :Student ;
+    :advisorName "Dr. Jones"^^xsd:string ;
+    :advisorTitle "Professor"^^xsd:string ;
+    :enrolledIn :CS102 ;
+    :hasAdvisor :P002 ;
+    :hasAge 23 ;
+    :hasName "Tom"^^xsd:string .
+
+:S003 a :Student ;
+    :advisorName "Dr. Smith"^^xsd:string ;
+    :advisorTitle "Associate Professor"^^xsd:string ;
+    :enrolledIn :CS101 ;
+    :hasAdvisor :P001 ;
+    :hasAge 22 ;
+    :hasName "Ana"^^xsd:string .
+
+:CS102 a :Course .
+
+:P002 a :Professor .
+
+:CS101 a :Course .
+
+:P001 a :Professor .

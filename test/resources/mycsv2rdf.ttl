@@ -1,0 +1,32 @@
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix ns1: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/people/Jake> a foaf:Person ;
+    ns1:address "12E Street 98"^^xsd:string ;
+    ns1:name "Jake"^^xsd:string ;
+    foaf:age 42 .
+
+<http://example.org/people/Jenny> a foaf:Person ;
+    ns1:address "Leidseplein 2"^^xsd:string ;
+    ns1:name "Jenny"^^xsd:string ;
+    foaf:age 12 .
+
+<http://example.org/people/Jill> a foaf:Person ;
+    ns1:address "52W Street 5"^^xsd:string ;
+    ns1:name "Jill"^^xsd:string ;
+    foaf:age 28 .
+
+<http://example.org/people/John> a foaf:Person ;
+    ns1:address "Dam 52"^^xsd:string ;
+    ns1:name "John"^^xsd:string ;
+    foaf:age 32 .
+
+<http://mylocations.org/addresses/12E%20Street%2098> ns1:name "12E Street 98"^^xsd:string .
+
+<http://mylocations.org/addresses/52W%20Street%205> ns1:name "52W Street 5"^^xsd:string .
+
+<http://mylocations.org/addresses/Dam%2052> ns1:name "Dam 52"^^xsd:string .
+
+<http://mylocations.org/addresses/Leidseplein%202> ns1:name "Leidseplein 2"^^xsd:string .
+

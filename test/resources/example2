@@ -1,0 +1,45 @@
+@prefix ex: <http://example.org/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ex:author1 a foaf:Person .
+ex:author1 foaf:name "Alice Smith" .
+ex:author1 foaf:mbox <mailto:alice@example.org> .
+ex:author1 foaf:birthDate "1975-05-20"^^xsd:date .
+
+ex:author2 a foaf:Person .
+ex:author2 foaf:name "Bob Johnson" .
+ex:author2 foaf:mbox <mailto:bob.j@example.org> .
+ex:author2 foaf:birthDate "1980-11-02"^^xsd:date .
+
+ex:publisher1 a foaf:Organization .
+ex:publisher1 foaf:name "Acme Publishing" .
+ex:publisher1 foaf:homepage <http://acmepub.example.org> .
+
+ex:publisher2 a foaf:Organization .
+ex:publisher2 foaf:name "Books & Co." .
+ex:publisher2 foaf:homepage <http://booksandco.example.org> .
+
+ex:book1 a dc:BibliographicResource .
+ex:book1 dc:title "Learning RDF" .
+ex:book1 dc:creator ex:author1 .
+ex:book1 dc:publisher ex:publisher1 .
+ex:book1 dcterms:issued "2020-03-15"^^xsd:date .
+ex:book1 dc:language "en" .
+
+ex:book2 a dc:BibliographicResource .
+ex:book2 dc:title "Advanced Semantic Web" .
+ex:book2 dc:creator ex:author1 .
+ex:book2 dc:creator ex:author2 .
+ex:book2 dc:publisher ex:publisher2 .
+ex:book2 dcterms:issued "2022-08-01"^^xsd:date .
+ex:book2 dc:language "en" .
+
+ex:book3 a dc:BibliographicResource .
+ex:book3 dc:title "Intro to SPARQL" .
+ex:book3 dc:creator ex:author2 .
+ex:book3 dc:publisher ex:publisher1 .
+ex:book3 dcterms:issued "2019-12-05"^^xsd:date .
+ex:book3 dc:language "en" .

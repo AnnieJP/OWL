@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns="http://example.org/"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <Student rdf:about="http://example.org/S003">
+    <enrolledIn>
+      <Course rdf:about="http://example.org/CS101"/>
+    </enrolledIn>
+    <hasAdvisor>
+      <Professor rdf:about="http://example.org/P001"/>
+    </hasAdvisor>
+    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">22</hasAge>
+    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ana</hasName>
+  </Student>
+  <Student rdf:about="http://example.org/S001">
+    <enrolledIn rdf:resource="http://example.org/CS101"/>
+    <hasAdvisor rdf:resource="http://example.org/P001"/>
+    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">21</hasAge>
+    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jane</hasName>
+  </Student>
+  <Student rdf:about="http://example.org/S002">
+    <enrolledIn>
+      <Course rdf:about="http://example.org/CS102"/>
+    </enrolledIn>
+    <hasAdvisor>
+      <Professor rdf:about="http://example.org/P002"/>
+    </hasAdvisor>
+    <hasAge rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">23</hasAge>
+    <hasName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tom</hasName>
+  </Student>
+</rdf:RDF>

@@ -1,0 +1,18 @@
+@prefix : <http://example.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+:E001 a :Employee ;
+    :hasAge 30 ;
+    :hasManager :E002 ;
+    :hasName "Alice"^^xsd:string ;
+    :worksIn :HR .
+
+:E002 a :Employee ;
+    :hasAge 40 ;
+    :hasName "Bob"^^xsd:string ;
+    :worksIn :IT .
+
+:HR a :Department .
+
+:IT a :Department .
+

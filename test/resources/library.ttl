@@ -1,0 +1,43 @@
+@prefix : <http://example.org/library#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Classes
+:Person a owl:Class .
+:Book a owl:Class .
+
+# Properties
+:wrote a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Book .
+:writtenBy a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Person ;
+    owl:inverseOf :wrote .
+
+:borrowed a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Book .
+:borrowedBy a owl:ObjectProperty ;
+    rdfs:domain :Book ;
+    rdfs:range :Person ;
+    owl:inverseOf :borrowed .
+
+# Individuals
+:Alice a :Person ;
+    :name "Alice" .
+:Bob a :Person ;
+    :name "Bob" .
+
+:Book1 a :Book ;
+    :title "The Great Novel" .
+:Book2 a :Book ;
+    :title "Programming 101" .
+
+# Relationships
+:Alice :wrote :Book1 .
+:Bob :wrote :Book2 .
+:Bob :borrowed :Book1 .
+
