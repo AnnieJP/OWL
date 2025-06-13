@@ -73,8 +73,7 @@ def csv_file_to_ttl(file_path: str, output_file: str, base_namespace: str = "htt
     # Convert rows to RDF
     for _, row in df.iterrows():
         subject_uri = EX[str(row[subject_col])]
-        default_class = subject_col.replace("ID", "").strip()
-        g.add((subject_uri, RDF.type, EX[default_class])) # default top class
+        g.add((subject_uri, RDF.type, EX[subject_col])) # default top class
 
         for col in headers[1:]:
             val = row[col]

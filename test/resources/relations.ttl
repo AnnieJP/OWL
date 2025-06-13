@@ -1,0 +1,57 @@
+@prefix : <http://example.org/relationships#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Class definition
+:Person a owl:Class .
+
+# Symmetric property examples
+:friendOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:SymmetricProperty .  # If A is a friend of B, then B is a friend of A
+
+:marriedTo a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:SymmetricProperty .  # If A is married to B, then B is married to A
+
+# Inverse property examples
+:parentOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    owl:inverseOf :childOf .  # If A is a parent of B, then B is a child of A
+
+:childOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:teaches a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    owl:inverseOf :taughtBy .  # If A teaches B, then B is taught by A
+
+:taughtBy a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+# Individuals
+:Alice a :Person .
+:Bob a :Person .
+:Charlie a :Person .
+:Diana a :Person .
+:Eve a :Person .
+
+# Relationships - only explicitly stated
+:Alice :friendOf :Bob .        # Symmetric: should infer Bob friendOf Alice
+:Charlie :marriedTo :Diana .   # Symmetric: should infer Diana marriedTo Charlie
+
+:Alice :parentOf :Charlie .    # Inverse: should infer Charlie childOf Alice
+:Bob :teaches :Eve .           # Inverse: should infer Eve taughtBy Bob
+
+# These relationships should be inferred by the reasoner:
+# :Bob :friendOf :Alice .
+# :Diana :marriedTo :Charlie .
+# :Charlie :childOf :Alice .
+# :Eve :taughtBy :Bob .

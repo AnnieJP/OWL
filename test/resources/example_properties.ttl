@@ -1,0 +1,60 @@
+@prefix : <http://example.org/family#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+# Class definition
+:Person a owl:Class .
+
+# Property definitions with characteristics
+:hasParent a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    owl:inverseOf :hasChild ;
+    rdf:type owl:AsymmetricProperty ;    # 🔒 New: prevent mutual parenting
+    rdf:type owl:IrreflexiveProperty .   # 🔒 New: no self-parenting
+
+:hasChild a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person .
+
+:hasAncestor a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:TransitiveProperty .
+
+:hasSibling a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:SymmetricProperty .
+
+:hasSpouse a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:SymmetricProperty ;
+    rdf:type owl:FunctionalProperty .
+
+:hasBiologicalMother a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:FunctionalProperty .
+
+:isBiologicalMotherOf a owl:ObjectProperty ;
+    rdfs:domain :Person ;
+    rdfs:range :Person ;
+    rdf:type owl:InverseFunctionalProperty .
+
+# Individuals
+:Alice a :Person .
+:Bob a :Person .
+:Carol a :Person .
+:Dave a :Person .
+:Eve a :Person .  # ✅ New: explicitly declared
+
+# Relationships
+:Alice :hasParent :Bob .
+:Bob :hasParent :Carol .
+:Carol :hasParent :Bob .  # ⚠️ Will now cause inconsistency due to asymmetry
+:Alice :hasSibling :Dave .
+:Alice :hasSpouse :Eve .
+:Bob :hasBiologicalMother :Carol .

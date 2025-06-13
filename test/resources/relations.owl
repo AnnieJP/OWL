@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns="http://example.org/relationships#"
+  xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+  xmlns:owl="http://www.w3.org/2002/07/owl#"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+>
+  <owl:ObjectProperty rdf:about="http://example.org/relationships#teaches">
+    <rdfs:domain rdf:resource="http://example.org/relationships#Person"/>
+    <rdfs:range rdf:resource="http://example.org/relationships#Person"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://example.org/relationships#taughtBy">
+        <rdfs:domain rdf:resource="http://example.org/relationships#Person"/>
+        <rdfs:range rdf:resource="http://example.org/relationships#Person"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://example.org/relationships#marriedTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/relationships#Person"/>
+    <rdfs:range rdf:resource="http://example.org/relationships#Person"/>
+  </owl:ObjectProperty>
+  <Person rdf:about="http://example.org/relationships#Alice">
+    <friendOf>
+      <Person rdf:about="http://example.org/relationships#Bob">
+        <teaches rdf:resource="http://example.org/relationships#Eve"/>
+      </Person>
+    </friendOf>
+    <parentOf>
+      <Person rdf:about="http://example.org/relationships#Charlie">
+        <marriedTo rdf:resource="http://example.org/relationships#Diana"/>
+      </Person>
+    </parentOf>
+  </Person>
+  <owl:ObjectProperty rdf:about="http://example.org/relationships#parentOf">
+    <rdfs:domain rdf:resource="http://example.org/relationships#Person"/>
+    <rdfs:range rdf:resource="http://example.org/relationships#Person"/>
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://example.org/relationships#childOf">
+        <rdfs:domain rdf:resource="http://example.org/relationships#Person"/>
+        <rdfs:range rdf:resource="http://example.org/relationships#Person"/>
+      </owl:ObjectProperty>
+    </owl:inverseOf>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://example.org/relationships#friendOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+    <rdfs:domain rdf:resource="http://example.org/relationships#Person"/>
+    <rdfs:range rdf:resource="http://example.org/relationships#Person"/>
+  </owl:ObjectProperty>
+  <owl:Class rdf:about="http://example.org/relationships#Person"/>
+  <Person rdf:about="http://example.org/relationships#Eve"/>
+  <Person rdf:about="http://example.org/relationships#Diana"/>
+</rdf:RDF>

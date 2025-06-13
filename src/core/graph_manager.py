@@ -15,7 +15,7 @@ class GraphManager:
     def get_graph(self):
         return self.g
 
-    # 🔜 For future use
+    # For future use
     def load_namespace(self, prefix, uri):
         self.g.bind(prefix, uri)
 

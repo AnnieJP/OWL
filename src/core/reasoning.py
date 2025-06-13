@@ -1,7 +1,8 @@
 import os
-from rdflib import Graph, URIRef, Literal
+from rdflib import Graph, URIRef, RDF, OWL
 from owlready2 import get_ontology, sync_reasoner
 import tempfile
+from utils.reasoning_utils import augment_inverse_properties, augment_symmetric_properties
 
 def convert_ttl_to_owl(ttl_path):
     """
@@ -39,6 +40,12 @@ def apply_reasoning(owl_path):
             inverse_pairs[str(s)] = str(o)
             inverse_pairs[str(o)] = str(s)
 
+    symmetric_properties = set()
+    for s, p, o in original_graph.triples((None, RDF.type, OWL.SymmetricProperty)):
+        symmetric_properties.add(s)
+
+    print("🔁 Symmetric Properties found:", symmetric_properties)
+
     # Load ontology and run reasoner
     onto = get_ontology(f"file://{os.path.abspath(owl_path)}").load()
 
@@ -48,6 +55,7 @@ def apply_reasoning(owl_path):
         print("✅ Reasoning completed successfully")
     except Exception as e:
         print(f"❌ Error during reasoning: {e}")
+        print("Reasoning failed. Returning original graph.")
         return original_graph  # Return original graph if reasoning fails
 
     # Save the inferred ontology to a temporary file
@@ -95,20 +103,16 @@ def apply_reasoning(owl_path):
         # Keep everything else
         filtered_graph.add((s, p, o))
 
-    # Now manually add inverse relationships based on the original definitions
-    # and the triples in the filtered graph
-    added_count = 0
-    for s, p, o in list(filtered_graph):
-        p_str = str(p)
-        if p_str in inverse_pairs:
-            inverse_p = URIRef(inverse_pairs[p_str])
-            # Add the inverse relationship if it doesn't exist
-            if (o, inverse_p, s) not in filtered_graph:
-                filtered_graph.add((o, inverse_p, s))
-                added_count += 1
+    symmetric_added = augment_symmetric_properties(filtered_graph, symmetric_properties)
+    if symmetric_added > 0:
+        print(f"✅ Manually added {symmetric_added} symmetric relationships")
 
-    if added_count > 0:
-        print(f"✅ Manually added {added_count} inverse relationships")
+    # Apply property augmentation
+    inverse_added = augment_inverse_properties(filtered_graph, inverse_pairs)
+    if inverse_added > 0:
+        print(f"✅ Manually added {inverse_added} inverse relationships")
+    
+
 
     # Clean up the temporary file
     os.unlink(temp_path)
