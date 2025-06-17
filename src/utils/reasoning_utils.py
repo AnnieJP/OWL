@@ -23,39 +23,6 @@ def augment_inverse_properties(graph, inverse_pairs):
     
     return added_count
 
-# def augment_symmetric_properties(graph):
-#     """
-#     Augments a graph by adding symmetric relationship triples.
-#
-#     Args:
-#         graph: An RDFLib Graph object to augment
-#
-#     Returns:
-#         int: Number of triples added
-#     """
-#     owl_ns = "http://www.w3.org/2002/07/owl#"
-#     symmetric_property = URIRef(f"{owl_ns}SymmetricProperty")
-#     rdf_ns = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-#     rdf_type = URIRef(f"{rdf_ns}type")
-#
-#     # Find all symmetric properties
-#     symmetric_props = set()
-#     for s, p, o in graph:
-#         if p == rdf_type and o == symmetric_property:
-#             symmetric_props.add(s)  # Store the URIRef object
-#
-#     # Add symmetric relationships
-#     added_count = 0
-#     for s, p, o in list(graph):
-#         if p in symmetric_props:
-#             # Add the symmetric relationship if it doesn't exist
-#             if (o, p, s) not in graph:
-#                 graph.add((o, p, s))
-#                 added_count += 1
-#
-#     return added_count
-
-
 def augment_symmetric_properties(graph, symmetric_props):
     """
     Augments a graph by adding symmetric relationship triples.

@@ -1,6 +1,7 @@
 import networkx as nx
 import matplotlib.pyplot as plt
 from utils.namespace_utils import shorten_uri
+from utils.logging_utils import logger
 
 
 def visualize_graph(graph):
@@ -187,5 +188,6 @@ def visualize_graph(graph):
         Line2D([0], [0], color='gray', lw=1, label='Other Relation')
     ]
     plt.legend(handles=legend_elements, loc='upper right')
-    
+
+
     plt.show()
