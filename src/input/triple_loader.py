@@ -2,7 +2,6 @@
 
 from rdflib import URIRef, Literal, Graph
 import os
-import tempfile
 from utils.logging_utils import logger
 from input.csv_to_ttl import CSVConverter
 
